@@ -4,6 +4,16 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - dev
+  push:
+    branches:
+      - main
+      - dev
+      - 'dev-*'  # * does not cover slashes
+      - 'feat/**'   # ** covers slashes
+    paths-ignore:   # and nothing should have changed in the workflows folder
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
